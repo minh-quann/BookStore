@@ -5,15 +5,40 @@
     <meta charset="UTF-8">
     <title>Danh sách sách</title>
     <th:block th:replace="layout::link-css"></th:block>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .container {
+            animation: fadeIn 2s;
+        }
+        .btn-primary, .btn-success, .btn-danger {
+            transition: transform 0.3s;
+        }
+        .btn-primary:hover, .btn-success:hover, .btn-danger:hover {
+            transform: scale(1.1);
+        }
+        .table thead th {
+            background-color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .table tbody tr {
+            transition: background-color 0.3s;
+        }
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="layout::header"></th:block>
 <div class="container mt-4">
-    <h1 th:text="${title}">Danh sách sách</h1>
+    <h1 class="animate__animated animate__fadeInDown" th:text="${title}">Danh sách sách</h1>
     <td sec:authorize="hasAnyAuthority('ADMIN')">
-    <a class="btn btn-primary mb-3" th:href="@{/books/add}">Thêm mới</a>
+        <a class="btn btn-primary mb-3 animate__animated animate__bounceIn" th:href="@{/books/add}">Thêm mới</a>
     </td>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover animate__animated animate__fadeInUp">
         <thead>
         <tr>
             <th>ID</th>
@@ -40,5 +65,8 @@
     </table>
 </div>
 <th:block th:replace="layout::footer"></th:block>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
